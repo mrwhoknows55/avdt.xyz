@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .itinerary {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .day {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .day:last-child {
+            border-bottom: none;
+        }
+        
+        .day-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .activities {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .activity {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .time {
+            min-width: 100px;
+            font-weight: bold;
+            color: #444;
+        }
+        
+        .description {
+            flex-grow: 1;
+            color: #333;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 30px;
+        }
+
+        .explore-section {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .explore-title {
+            color: #1a73e8;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .explore-list {
+            margin: 0;
+            padding-left: 20px;
+            color: #444;
+        }
+
+        .explore-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="itinerary">
+        <h1>Mumbai to Delhi Travel Itinerary</h1>
+        
+        <div class="day">
+            <div class="day-header">Day 1 - Friday, January 31</div>
+            <ul class="activities">
+                <li class="activity">
+                    <span class="time">11:00</span>
+                    <span class="description">Depart Mumbai by Train 12471 SWARAJ EXPRESS to Delhi (NDLS)</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="day">
+            <div class="day-header">Day 2 - Saturday, February 1</div>
+            <ul class="activities">
+                <li class="activity">
+                    <span class="time">5:30</span>
+                    <span class="description">Arrive in Delhi</span>
+                </li>
+                <li class="activity">
+                    <span class="time">7:00</span>
+                    <span class="description">Bus from ISBT Delhi to Rishikesh</span>
+                </li>
+                <li class="activity">
+                    <span class="time">12:00</span>
+                    <span class="description">Arrive in Rishikesh</span>
+                </li>
+                <li class="activity">
+                    <span class="time">Evening</span>
+                    <span class="description">Explore Rishikesh</span>
+                </li>
+                <li class="activity">
+                    <span class="time">Night</span>
+                    <span class="description">Stay in Rishikesh</span>
+                </li>
+            </ul>
+            <div class="explore-section">
+                <div class="explore-title">Things to Explore in Rishikesh:</div>
+                <ul class="explore-list">
+                    <li>Attend the famous Ganga Aarti at Triveni Ghat</li>
+                    <li>Visit the Beatles Ashram</li>
+                    <li>Explore Laxman Jhula and Ram Jhula</li>
+                    <li>Try adventure sports (rafting, if time permits)</li>
+                    <li>Visit Parmarth Niketan</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="day-header">Day 3 - Sunday, February 2</div>
+            <ul class="activities">
+                <li class="activity">
+                    <span class="time">5:30</span>
+                    <span class="description">Bus from Rishikesh to Joshimath</span>
+                </li>
+                <li class="activity">
+                    <span class="time">17:30</span>
+                    <span class="description">Arrive in Joshimath</span>
+                </li>
+                <li class="activity">
+                    <span class="time">Night</span>
+                    <span class="description">Stay in Joshimath</span>
+                </li>
+            </ul>
+            <div class="explore-section">
+                <div class="explore-title">Things to Explore in Joshimath:</div>
+                <ul class="explore-list">
+                    <li>Visit Narsingh Temple</li>
+                    <li>Explore Shankaracharya Math</li>
+                    <li>Visit Jyotirmath</li>
+                    <li>Local market exploration</li>
+                    <li>View of Nanda Devi peak</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="day-header">Day 4 - Monday, February 3</div>
+            <ul class="activities">
+                <li class="activity">
+                    <span class="time">5:30</span>
+                    <span class="description">Depart Joshimath</span>
+                </li>
+                <li class="activity">
+                    <span class="time">6:30</span>
+                    <span class="description">Take Ropeway/Cab to Auli</span>
+                </li>
+                <li class="activity">
+                    <span class="time">Day</span>
+                    <span class="description">Explore Auli</span>
+                </li>
+                <li class="activity">
+                    <span class="time">Night</span>
+                    <span class="description">Stay in Auli</span>
+                </li>
+            </ul>
+            <div class="explore-section">
+                <div class="explore-title">Things to Explore in Auli:</div>
+                <ul class="explore-list">
+                    <li>Skiing (if winter season)</li>
+                    <li>Take the chair lift ride</li>
+                    <li>Visit Artificial Lake</li>
+                    <li>Enjoy panoramic views of Nanda Devi, Mana Parvat and Kamat</li>
+                    <li>Gurso Bugyal trek</li>
+                    <li>Photography at sunset point</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="day-header">Day 5 - Tuesday, February 4</div>
+            <ul class="activities">
+                <li class="activity">
+                    <span class="time">6:00-13:00</span>
+                    <span class="description">Explore Auli and Joshimath</span>
+                </li>
+                <li class="activity">
+                    <span class="time">13:00-14:00</span>
+                    <span class="description">Ropeway/Cab from Auli to Joshimath</span>
+                </li>
+                <li class="activity">
+                    <span class="time">Night</span>
+                    <span class="description">Stay in Joshimath</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="day">
+            <div class="day-header">Day 6 - Wednesday, February 5</div>
+            <ul class="activities">
+                <li class="activity">
+                    <span class="time">6:00</span>
+                    <span class="description">Bus from Joshimath to Haridwar</span>
+                </li>
+                <li class="activity">
+                    <span class="time">17:00</span>
+                    <span class="description">Arrive in Haridwar</span>
+                </li>
+                <li class="activity">
+                    <span class="time">Night</span>
+                    <span class="description">Stay in Haridwar</span>
+                </li>
+            </ul>
+            <div class="explore-section">
+                <div class="explore-title">Things to Explore in Haridwar:</div>
+                <ul class="explore-list">
+                    <li>Attend Ganga Aarti at Har Ki Pauri</li>
+                    <li>Visit Mansa Devi Temple (take ropeway)</li>
+                    <li>Explore Chandi Devi Temple</li>
+                    <li>Visit Daksha Mahadev Temple</li>
+                    <li>Shop at Local Markets</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="day-header">Day 7 - Thursday, February 6</div>
+            <ul class="activities">
+                <li class="activity">
+                    <span class="time">Until 11:30</span>
+                    <span class="description">Explore Haridwar</span>
+                </li>
+                <li class="activity">
+                    <span class="time">11:30</span>
+                    <span class="description">Bus to Delhi</span>
+                </li>
+                <li class="activity">
+                    <span class="time">17:30</span>
+                    <span class="description">Arrive in Delhi</span>
+                </li>
+                <li class="activity">
+                    <span class="time">Night</span>
+                    <span class="description">Stay in Delhi</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="day">
+            <div class="day-header">Day 8-9 - Friday-Saturday, February 7-8</div>
+            <ul class="activities">
+                <li class="activity">
+                    <span class="time">Full day</span>
+                    <span class="description">Delhi Exploration</span>
+                </li>
+                <li class="activity">
+                    <span class="time">11:50 (Sat)</span>
+                    <span class="description">Flight 6E6047 from Delhi to Mumbai</span>
+                </li>
+                <li class="activity">
+                    <span class="time">14:10 (Sat)</span>
+                    <span class="description">Arrive in Mumbai</span>
+                </li>
+            </ul>
+            <div class="explore-section">
+                <div class="explore-title">Things to Explore in Delhi:</div>
+                <ul class="explore-list">
+                    <li>Day 1:</li>
+                    <ul>
+                        <li>Red Fort</li>
+                        <li>Jama Masjid</li>
+                        <li>Chandni Chowk</li>
+                        <li>Qutub Minar</li>
+                        <li>Humayun's Tomb</li>
+                    </ul>
+                    <li>Day 2:</li>
+                    <ul>
+                        <li>India Gate</li>
+                        <li>Lotus Temple</li>
+                        <li>Akshardham Temple</li>
+                        <li>Connaught Place</li>
+                        <li>Shopping at Sarojini Nagar/Lajpat Nagar</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
