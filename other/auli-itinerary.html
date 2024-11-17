@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9fafb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #526794;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .itinerary {
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        .day {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 20px;
+        }
+
+        .day:last-child {
+            border-bottom: none;
+        }
+
+        .day-header {
+            background-color: #526794;
+            color: #ffffff;
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+        }
+
+        .activities {
+            list-style: none;
+            padding: 0;
+        }
+
+        .activity {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            padding: 8px 0;
+            border-left: 6px solid;
+            font-size: 1.1rem;
+        }
+
+        .time {
+            min-width: 110px;
+            font-weight: 700;
+            color: #374151;
+            font-size: 1.1rem;
+            padding-left: 16px;
+            /* Added left padding */
+        }
+
+        .description {
+            flex-grow: 1;
+            color: #1f2937;
+        }
+
+        .meal {
+            border-left-color: #10b981;
+        }
+
+        .transport {
+            border-left-color: #f59e0b;
+        }
+
+        .activity-main {
+            border-left-color: #3b82f6;
+        }
+
+        .stay {
+            border-left-color: #ef4444;
+        }
+
+        .explore-section {
+            background-color: #eff6ff;
+            padding: 18px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .explore-title {
+            color: #526794;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .explore-list {
+            margin: 0;
+            padding-left: 20px;
+            color: #374151;
+        }
+
+        .explore-list li {
+            margin-bottom: 8px;
+        }
+
+        .sub-activities {
+            padding-left: 120px;
+            margin: 8px 0;
+        }
+
+        .legend {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0;
+            padding: 16px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+        }
+
+        /* Responsive design for mobile devices */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .day-header {
+                font-size: 1.1rem;
+                padding: 10px 14px;
+            }
+
+            .activity {
+                flex-direction: column;
+                /* Stack content for smaller screens */
+                align-items: flex-start;
+            }
+
+            .time {
+                min-width: auto;
+                /* Remove fixed width */
+                padding-left: 0;
+                /* Reset padding for stacked layout */
+                margin-bottom: 6px;
+                /* Add spacing below time */
+                font-size: 1rem;
+                /* Adjust font size */
+            }
+
+            .description {
+                font-size: 1rem;
+                /* Adjust font size */
+            }
+        }
+
+        /* Modern typography enhancements */
+        h1,
+        .day-header,
+        .explore-title {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tips-notice {
+            background-color: #f9f9f9;
+            /* Light gray background for subtle emphasis */
+            border: 1px solid #ddd;
+            /* Soft border to define the section */
+            border-radius: 8px;
+            /* Rounded corners for a modern look */
+            padding: 20px;
+            margin: 20px 0;
+            /* Space around the section */
+            font-family: Arial, sans-serif;
+            /* Clean and readable font */
+        }
+
+        .tips-header {
+            font-size: 18px;
+            /* Larger font size for the header */
+            font-weight: bold;
+            /* Bold text for emphasis */
+            color: #333;
+            /* Dark gray for easy readability */
+            margin-bottom: 15px;
+            /* Space below the header */
+            text-align: center;
+            /* Center the header text */
+            text-transform: uppercase;
+            /* Capitalize header text for a formal feel */
+        }
+
+        .tips-list {
+            list-style-type: disc;
+            /* Standard bullet points */
+            margin-left: 20px;
+            /* Indent list items */
+            padding: 0;
+            /* No extra padding around the list */
+            color: #555;
+            /* Medium gray for body text */
+        }
+
+        .tip {
+            margin-bottom: 10px;
+            /* Space between tips */
+            line-height: 1.6;
+            /* Better line spacing for readability */
+        }
+
+        .tip .highlight {
+            font-weight: bold;
+            /* Emphasize key points */
+            color: #007BFF;
+            /* Subtle blue for visual distinction */
+        }
+
+
+
+        /* Adding custom fonts for enhanced modern feel */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@500;700&display=swap');
+    </style>
+
+</head>
+
+<body>
+    <div class="itinerary">
+        <h1>Delhi-Auli-Rishikesh-Haridwar Travel Itinerary 2025</h1>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #e6f3e6;"></div>
+                <span>Meals</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #fff3e6;"></div>
+                <span>Transport</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #e6f0ff;"></div>
+                <span>Activities</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ffe6e6;"></div>
+                <span>Accommodation</span>
+            </div>
+        </div>
+
+        <!-- Day 1 -->
+        <div class="day">
+            <div class="day-header">Day 1 - Friday, January 31, 2025</div>
+            <ul class="activities">
+                <li class="activity transport">
+                    <span class="time">11:00</span>
+                    <span class="description">Depart Mumbai to Delhi (NDLS) - Train 12471 SWARAJ EXPRESS</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day">
+            <div class="day-header">Day 2 - Saturday, February 1, 2025</div>
+            <ul class="activities">
+                <li class="activity transport">
+                    <span class="time">05:30</span>
+                    <span class="description">Arrive in Delhi</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">06:00</span>
+                    <span class="description">Breakfast: On the train or at station</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">07:00</span>
+                    <span class="description">Bus from Delhi (ISBT) to Rishikesh</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">12:00</span>
+                    <span class="description">Arrive in Rishikesh</span>
+                </li>
+                <li class="activity stay">
+                    <span class="time">12:30</span>
+                    <span class="description">Hotel Check-in</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">13:00</span>
+                    <span class="description">Lunch at local restaurants</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">14:00-16:00</span>
+                    <span class="description">Explore Ram/Laxman Jhula</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">16:00-17:00</span>
+                    <span class="description">Visit Beatles Ashram</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">17:00</span>
+                    <span class="description">Attend Ganga Aarti at Triveni Ghat</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">19:00</span>
+                    <span class="description">Dinner near hotel</span>
+                </li>
+                <li class="activity stay">
+                    <span class="time">Night</span>
+                    <span class="description">Overnight at Rishikesh</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day">
+            <div class="day-header">Day 3 - Sunday, February 2, 2025</div>
+            <ul class="activities">
+                <li class="activity meal">
+                    <span class="time">05:00</span>
+                    <span class="description">Breakfast at hotel/café</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">05:30</span>
+                    <span class="description">Bus from Rishikesh to Joshimath</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">17:30</span>
+                    <span class="description">Arrive in Joshimath</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">19:00</span>
+                    <span class="description">Dinner at local restaurant</span>
+                </li>
+                <li class="activity stay">
+                    <span class="time">Night</span>
+                    <span class="description">Overnight stay in Joshimath</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day">
+            <div class="day-header">Day 4 - Monday, February 3, 2025</div>
+            <ul class="activities">
+                <li class="activity meal">
+                    <span class="time">05:00</span>
+                    <span class="description">Breakfast at Joshimath hotel</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">05:30</span>
+                    <span class="description">Depart Joshimath to Auli by ropeway/cab</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">06:30</span>
+                    <span class="description">Arrive in Auli</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">07:30-12:30</span>
+                    <span class="description">Visit Artificial Lake and winter sports activities</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">13:00</span>
+                    <span class="description">Lunch at Auli café</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">14:00-17:00</span>
+                    <span class="description">Continue winter activities</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">19:00</span>
+                    <span class="description">Dinner at Auli accommodation</span>
+                </li>
+                <li class="activity stay">
+                    <span class="time">Night</span>
+                    <span class="description">Overnight stay in Auli</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day">
+            <div class="day-header">Day 5 - Tuesday, February 4, 2025</div>
+            <ul class="activities">
+                <li class="activity meal">
+                    <span class="time">07:00</span>
+                    <span class="description">Breakfast at Auli accommodation</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">08:00-12:00</span>
+                    <span class="description">Gurson Bugyal Trek (3km from Point 10)</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">12:00</span>
+                    <span class="description">Lunch during trek or at accommodation</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">13:00</span>
+                    <span class="description">Depart Auli to Joshimath by ropeway/cab</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">14:00</span>
+                    <span class="description">Arrive in Joshimath</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">15:00-18:00</span>
+                    <span class="description">Visit Shankaracharya Math and Kalpavriksh</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">19:00</span>
+                    <span class="description">Dinner in Joshimath</span>
+                </li>
+                <li class="activity stay">
+                    <span class="time">Night</span>
+                    <span class="description">Overnight stay in Joshimath</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day">
+            <div class="day-header">Day 6 - Wednesday, February 5, 2025</div>
+            <ul class="activities">
+                <li class="activity meal">
+                    <span class="time">05:00</span>
+                    <span class="description">Breakfast at Joshimath hotel</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">06:00</span>
+                    <span class="description">Bus from Joshimath to Haridwar</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">17:00</span>
+                    <span class="description">Arrive in Haridwar</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">17:30-19:00</span>
+                    <span class="description">Visit Har ki Pauri and attend Ganga Aarti</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">19:30</span>
+                    <span class="description">Dinner at Haridwar restaurant</span>
+                </li>
+                <li class="activity stay">
+                    <span class="time">Night</span>
+                    <span class="description">Overnight stay in Haridwar</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Day 7 -->
+        <div class="day">
+            <div class="day-header">Day 7 - Thursday, February 6, 2025</div>
+            <ul class="activities">
+                <li class="activity meal">
+                    <span class="time">08:00</span>
+                    <span class="description">Breakfast at Haridwar hotel</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">09:00-11:00</span>
+                    <span class="description">Visit Mansa Devi Temple and Chandi Devi Temple</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">11:30</span>
+                    <span class="description">Bus from Haridwar to Delhi</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">17:30</span>
+                    <span class="description">Arrive in Delhi</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">18:30-20:00</span>
+                    <span class="description">Visit India Gate</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">20:30</span>
+                    <span class="description">Dinner at Connaught Place</span>
+                </li>
+                <li class="activity stay">
+                    <span class="time">Night</span>
+                    <span class="description">Overnight stay in Delhi</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Day 8 -->
+        <div class="day">
+            <div class="day-header">Day 8 - Saturday, February 8, 2023</div>
+            <ul class="activities">
+                <li class="activity meal">
+                    <span class="time">08:00</span>
+                    <span class="description">Breakfast at your Delhi hotel or a nearby café</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">09:00-17:00</span>
+                    <span class="description">Day Trip to Agra: Visit Taj Mahal and Agra Fort</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">13:00</span>
+                    <span class="description">Lunch near the Taj Mahal or in Agra</span>
+                </li>
+                <li class="activity activity-main">
+                    <span class="time">17:30-20:00</span>
+                    <span class="description">Explore any other attractions in Delhi</span>
+                </li>
+                <li class="activity meal">
+                    <span class="time">20:30</span>
+                    <span class="description">Dinner: Enjoy your last night in Delhi with a special meal</span>
+                </li>
+                <li class="activity stay">
+                    <span class="time">Night</span>
+                    <span class="description">Overnight stay in Delhi</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Day 9 -->
+        <div class="day">
+            <div class="day-header">Day 9 - Sunday, February 9, 2023</div>
+            <ul class="activities">
+                <li class="activity meal">
+                    <span class="time">08:00</span>
+                    <span class="description">Breakfast at your hotel or grab something to-go</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">11:50</span>
+                    <span class="description">Depart from Delhi to Mumbai by flight (Flight 6E6047)</span>
+                </li>
+                <li class="activity transport">
+                    <span class="time">14:10</span>
+                    <span class="description">Arrive in Mumbai</span>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="tips-notice">
+            <div class="tips-header">Important Tips and Notices</div>
+            <ul class="tips-list">
+                <li class="tip">
+                    <span class="highlight">Aarati Experience:</span> Choose to attend either the Ganga Aarti at
+                    Haridwar (Har Ki Pauri) or in Rishikesh (Triveni Ghat or Parmarth Niketan). Both offer a unique and
+                    spiritual atmosphere.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Weather Preparedness:</span> February in Auli can be extremely cold with snow, so pack heavy winter jackets, thermals, and gloves. Rishikesh is cooler in the evenings, so carry a light jacket.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Footwear:</span> Carry waterproof boots with good grip for Auli and comfortable walking shoes for Rishikesh.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Road Conditions:</span> Roads to Auli can be icy; confirm the weather and road status before traveling.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Activities:</span> Book skiing or cable car activities in Auli in advance. Try river rafting in Rishikesh if weather permits.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Health Precautions:</span> Keep motion sickness medicine for mountain roads, basic first aid, cold and fever medicine, and any personal prescriptions.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Connectivity:</span> Mobile signals may be patchy in Auli; download offline maps and carry cash as ATMs may be limited.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Hotel Stays:</span> Book hotels in advance, especially in Auli, as it’s a popular spot. Ensure your hotel has heating facilities and running hot water.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Essentials:</span> Pack sunscreen, sunglasses, lip balm, and a reusable water bottle for both locations.
+                </li>
+                <li class="tip">
+                    <span class="highlight">Local Cuisine:</span> Try local Garhwali dishes and enjoy riverside cafes in Rishikesh for a unique experience.
+                </li>
+                
+            </ul>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
