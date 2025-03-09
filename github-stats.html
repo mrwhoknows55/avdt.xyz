@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Stats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #24292e;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 10px;
+            color: #24292e;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        textarea {
+            min-height: 100px;
+        }
+        button {
+            background-color: #2ea44f;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        button:hover {
+            background-color: #2c974b;
+        }
+        .refresh-button {
+            background-color: #0366d6;
+        }
+        .refresh-button:hover {
+            background-color: #0256b9;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 14px;
+        }
+        .response {
+            margin-top: 20px;
+        }
+        .error {
+            color: #d73a49;
+            font-weight: bold;
+        }
+        .loading {
+            color: #6a737d;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub API Client</h1>
+    
+    <div class="container">
+        <!-- User Summary Section -->
+        <div class="card">
+            <h2>GitHub User Summary</h2>
+            <button id="refreshUserSummary" class="refresh-button">Refresh Data</button>
+            <div class="response" id="userSummaryResponse">
+                <pre class="loading">Loading user data...</pre>
+            </div>
+        </div>
+        
+        <!-- Repository Details Section -->
+        <div class="card">
+            <h2>Get Repository Details</h2>
+            <div class="form-group">
+                <label for="repoName">Repository Name:</label>
+                <input type="text" id="repoName" placeholder="Enter repository name">
+            </div>
+            <button id="getRepoDetails">Fetch Repository Details</button>
+            <div class="response" id="repoDetailsResponse">
+                <pre>Response will appear here...</pre>
+            </div>
+        </div>
+        
+        <!-- Create Issue Section -->
+        <div class="card">
+            <h2>Create Issue</h2>
+            <div class="form-group">
+                <label for="issueRepoName">Repository Name:</label>
+                <input type="text" id="issueRepoName" placeholder="Enter repository name">
+            </div>
+            <div class="form-group">
+                <label for="issueTitle">Issue Title:</label>
+                <input type="text" id="issueTitle" placeholder="Enter issue title">
+            </div>
+            <div class="form-group">
+                <label for="issueBody">Issue Body:</label>
+                <textarea id="issueBody" placeholder="Enter issue description"></textarea>
+            </div>
+            <button id="createIssue">Create Issue</button>
+            <div class="response" id="createIssueResponse">
+                <pre>Response will appear here...</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API base URL
+        const API_BASE_URL = 'https://github-stats-fastapi.onrender.com/v1/github';
+        
+        // Helper function to format JSON response
+        function formatJSON(json) {
+            return JSON.stringify(json, null, 2);
+        }
+        
+        // Helper function to handle API errors
+        function handleError(error, responseElement) {
+            console.error('API Error:', error);
+            let errorMessage = 'An error occurred while fetching data.';
+            
+            if (error.response) {
+                // Server responded with error status
+                errorMessage = `Error ${error.response.status}: ${error.response.statusText}`;
+                try {
+                    const errorData = error.response.json();
+                    errorMessage += `\n${formatJSON(errorData)}`;
+                } catch (e) {
+                    // Ignore parsing error
+                }
+            } else if (error.message) {
+                errorMessage = error.message;
+            }
+            
+            responseElement.innerHTML = `<span class="error">${errorMessage}</span>`;
+        }
+        
+        // Helper function to make API requests
+        async function makeRequest(url, method = 'GET', data = null) {
+            const options = {
+                method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            };
+            
+            if (data) {
+                options.body = JSON.stringify(data);
+            }
+            
+            const response = await fetch(url, options);
+            
+            if (!response.ok) {
+                const error = new Error(`HTTP error! Status: ${response.status}`);
+                error.response = response;
+                throw error;
+            }
+            
+            return response.json();
+        }
+        
+        // Function to fetch and display user summary
+        async function fetchUserSummary() {
+            const responseElement = document.querySelector('#userSummaryResponse pre');
+            responseElement.textContent = 'Loading...';
+            responseElement.className = 'loading';
+            
+            try {
+                const data = await makeRequest(API_BASE_URL);
+                responseElement.textContent = formatJSON(data);
+                responseElement.className = '';
+            } catch (error) {
+                handleError(error, responseElement);
+            }
+        }
+        
+        // Fetch user summary immediately when page loads
+        document.addEventListener('DOMContentLoaded', fetchUserSummary);
+        
+        // Refresh user summary when button clicked
+        document.getElementById('refreshUserSummary').addEventListener('click', fetchUserSummary);
+        
+        // Get Repository Details
+        document.getElementById('getRepoDetails').addEventListener('click', async () => {
+            const repoName = document.getElementById('repoName').value.trim();
+            const responseElement = document.querySelector('#repoDetailsResponse pre');
+            
+            if (!repoName) {
+                responseElement.innerHTML = '<span class="error">Please enter a repository name</span>';
+                return;
+            }
+            
+            responseElement.textContent = 'Loading...';
+            responseElement.className = 'loading';
+            
+            try {
+                const data = await makeRequest(`${API_BASE_URL}/${encodeURIComponent(repoName)}`);
+                responseElement.textContent = formatJSON(data);
+                responseElement.className = '';
+            } catch (error) {
+                handleError(error, responseElement);
+            }
+        });
+        
+        // Create Issue
+        document.getElementById('createIssue').addEventListener('click', async () => {
+            const repoName = document.getElementById('issueRepoName').value.trim();
+            const issueTitle = document.getElementById('issueTitle').value.trim();
+            const issueBody = document.getElementById('issueBody').value.trim();
+            const responseElement = document.querySelector('#createIssueResponse pre');
+            
+            if (!repoName || !issueTitle || !issueBody) {
+                responseElement.innerHTML = '<span class="error">Please fill in all fields</span>';
+                return;
+            }
+            
+            responseElement.textContent = 'Loading...';
+            responseElement.className = 'loading';
+            
+            try {
+                const data = await makeRequest(
+                    `${API_BASE_URL}/${encodeURIComponent(repoName)}/issues`, 
+                    'POST', 
+                    { title: issueTitle, body: issueBody }
+                );
+                responseElement.textContent = formatJSON(data);
+                responseElement.className = '';
+            } catch (error) {
+                handleError(error, responseElement);
+            }
+        });
+    </script>
+</body>
+</html>
