@@ -1,10 +1,15 @@
 :root {
     --nord0: #2e3440;
     --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
     --nord4: #d8dee9;
+    --nord5: #e5e9f0;
     --nord6: #eceff4;
     --nord7: #8fbcbb;
     --nord8: #88c0d0;
+    --nord9: #81a1c1;
+    --nord10: #5e81ac;
 }
 
 * {
@@ -18,44 +23,169 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
         Ubuntu, Cantarell, sans-serif;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    color: var(--nord4);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    z-index: 1;
     position: relative;
 }
 
-.container {
+header {
     text-align: center;
-    z-index: 1;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+    animation: fadeIn 1.5s ease-out forwards;
 }
 
 h1 {
     color: var(--nord6);
-    font-size: clamp(2rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
-    letter-spacing: 0.2em;
-    opacity: 0;
-    animation: fadeIn 2s ease-out forwards;
+    letter-spacing: 0.1em;
+}
+
+h2 {
+    color: var(--nord8);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--nord3);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    color: var(--nord7);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
 }
 
 .subtitle {
     color: var(--nord8);
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-top: 0.5rem;
+}
+
+section {
+    margin-bottom: 3rem;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+.job, .project, .degree, .skill-category {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--nord1);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job:hover, .project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.job-title, .job-period {
+    color: var(--nord9);
+    margin-bottom: 0.5rem;
+}
+
+.job-period {
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+ul {
+    list-style-position: inside;
+    margin-top: 0.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+a {
+    color: var(--nord8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--nord6);
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
     margin-top: 1rem;
-    opacity: 0;
-    animation: fadeIn 2s ease-out 0.5s forwards;
+}
+
+.social-links a {
+    padding: 0.5rem 1rem;
+    background-color: var(--nord2);
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--nord3);
+    text-decoration: none;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--nord10);
+    color: var(--nord6);
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: var(--nord9);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.wip-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background-color: var(--nord7);
+    color: var(--nord0);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    letter-spacing: 0.05em;
+}
+
+.github-icon {
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+    color: var(--nord9);
+    transition: color 0.3s ease, transform 0.3s ease;
+    vertical-align: middle;
+}
+
+.github-icon:hover {
+    color: var(--nord6);
+    transform: scale(1.2);
+    text-decoration: none;
 }
 
 .footer {
-    position: fixed;
-    bottom: 2rem;
-    left: 0;
-    right: 0;
     text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
     z-index: 2;
-    opacity: 0;
-    animation: fadeIn 2s ease-out 1s forwards;
 }
 
 .footer a {
@@ -75,6 +205,13 @@ h1 {
     animation: heartbeat 1.5s ease-in-out infinite;
 }
 
+.copyright {
+    text-align: center;
+    padding-bottom: 2rem;
+    font-size: 0.9rem;
+    color: var(--nord3);
+}
+
 .background-circles {
     position: fixed;
     width: 100%;
@@ -82,6 +219,7 @@ h1 {
     top: 0;
     left: 0;
     z-index: 0;
+    opacity: 0.5;
 }
 
 .circle {
@@ -153,10 +291,23 @@ h1 {
 /* Responsive design adjustments */
 @media (max-width: 768px) {
     .circle {
-        opacity: 0.5;
+        opacity: 0.3;
     }
 
     h1 {
-        letter-spacing: 0.1em;
+        letter-spacing: 0.05em;
+    }
+    
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .job, .project, .degree, .skill-category {
+        padding: 0.8rem;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }

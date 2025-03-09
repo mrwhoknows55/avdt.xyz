@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Avadhut Tanugade</title>
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     </head>
     <body>
         <div class="background-circles">
@@ -12,21 +13,124 @@
             <div class="circle"></div>
             <div class="circle"></div>
         </div>
-        <div class="container">
-            <h1>COMING SOON</h1>
-            <div class="subtitle">Under Construction</div>
+        
+        <div class="main-content">
+            <header>
+                <h1>Avadhut Tanugade</h1>
+                <div class="subtitle">Software Development Engineer</div>
+            </header>
+
+            <section class="basic-info">
+                <h2>About Me</h2>
+                <p>Software Development Engineer specializing in Android development with a passion for creating efficient and user-friendly applications.</p>
+            </section>
+
+            <section class="experience">
+                <h2>Experience</h2>
+                <div class="job">
+                    <h3>Rivi, Bangalore (Remote)</h3>
+                    <p class="job-title">Software Development Engineer</p>
+                    <p class="job-period">Mar. 2022 - Present</p>
+                    <ul>
+                        <li>Developed Rivi travel AI chat SDK with Jetpack Compose</li>
+                        <li>Led development of Decathlon Play Android app (100k+ installs, 4.6+ Rating)</li>
+                        <li>Engineered sport tracking module increasing daily active users by 45%</li>
+                        <li>Led development of media summarizer service using FastAPI, Gemini gRPC, and MongoDB</li>
+                        <li>Created smart assistant using OpenAI's live voice capabilities with Python backend</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <h3>Sensen.ai, Hyderabad (Remote)</h3>
+                    <p class="job-title">Android Development Intern</p>
+                    <p class="job-period">Sept. 2021 - Feb. 2022</p>
+                    <ul>
+                        <li>Delivered features and bug fixes for Gemineye, an AI-powered Android app for vehicle number plate detection</li>
+                        <li>Optimized multiple UI components and addressed scrolling performance issues, resulting in a 35% reduction in jank</li>
+                        <li>Improved login flow by implementing a new, independent login mechanism, reducing external dependencies</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <h3>SorevU Bangalore (Remote)</h3>
+                    <p class="job-title">Android Development Intern</p>
+                    <p class="job-period">Jan. 2021 - Jun. 2021</p>
+                    <ul>
+                        <li>Implemented a smart product recommendation chat interface using WebSockets, Kotlin Coroutines and Firebase Push Notifications</li>
+                        <li>Built and maintained a stable and efficient app architecture using MVVM pattern, Retrofit, and Crashlytics</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="skills">
+                <h2>Skills</h2>
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <p>Kotlin, Java, Python, SQL, HTML, CSS</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Mobile Development</h3>
+                    <p>Android SDK, Jetpack Compose, Room, SQLDelight, Dagger/Hilt, Coroutines, Flows, WorkManager, Background Services, FCM, Kotlin Multiplatform</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & APIs</h3>
+                    <p>FastAPI, gRPC, MongoDB, WebSockets, RESTful APIs, Firebase, Ktor, Exposed ORM</p>
+                </div>
+                <div class="skill-category">
+                    <h3>APIs/SDKs</h3>
+                    <p>OpenAI APIs (GPT, Voice, TTS), Google Gemini, WebRTC, Voice Activity Detection</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Developer Tools</h3>
+                    <p>Git, Docker, GitHub Actions, Bitrise, Fastlane</p>
+                </div>
+            </section>
+
+            <section class="projects">
+                <h2>Projects</h2>
+                <div class="project">
+                    <h3>Blog App <a href="https://github.com/mrwhoknows55/csgeeks-blog-app" target="_blank" class="github-icon"><i class="fab fa-github"></i></a></h3>
+                    <p>Android app to fetch and display blog articles via HTTP API. Implemented secure author authentication for creating and editing articles using Coroutines, Glide, and Navigation Component with MVVM architecture.</p>
+                </div>
+                <div class="project">
+                    <h3>Wallstack <a href="https://github.com/mrwhoknows55/Wall-Stack" target="_blank" class="github-icon"><i class="fab fa-github"></i></a></h3>
+                    <p>Android wallpaper app that consumes Wallhaven's API for image fetching, browsing, and wallpaper setting. Built with Kotlin, Retrofit, and Jetpack components for a smooth user experience.</p>
+                </div>
+                <div class="project">
+                    <h3>Find My Noti<span class="wip-tag">WIP</span> <a href="https://github.com/mrwhoknows55/find-my-noti" target="_blank" class="github-icon"><i class="fab fa-github"></i></a></h3>
+                    <p>A cross-platform notification history browser for Android and Desktop. Features include notification filtering, search capabilities, and sharing options. Built with Kotlin Multiplatform and Jetpack Compose.</p>
+                </div>
+                <div class="project">
+                    <h3>URL Shortener <span class="wip-tag">WIP</span> <a href="https://github.com/mrwhoknows55/shrtkt" target="_blank" class="github-icon"><i class="fab fa-github"></i></a></h3>
+                    <p>A URL shortening service built with Ktor framework and Exposed ORM. Features include custom short links, content negotiation, metrics monitoring, and health checks. Containerized with Docker for easy deployment.</p>
+                </div>                
+
+            </section>
+
+            <section class="education">
+                <h2>Education</h2>
+                <div class="degree">
+                    <h3>D. Y. Patil College Of Engineering And Technology</h3>
+                    <p>Bachelor of Technology in Computer Science And Engineering</p>
+                    <p>Jun. 2018 - July. 2022</p>
+                </div>
+            </section>
+
+            <section class="contact">
+                <h2>Contact</h2>
+                <p>Email: avdhutt2@gmail.com</p>
+                <div class="social-links">
+                    <a href="https://github.com/mrwhoknows55" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/mrwhoknows" target="_blank">LinkedIn</a>
+                    <a href="https://blog.mrwhoknows.com" target="_blank">Blog</a>
+                </div>
+            </section>
         </div>
+
         <div class="footer">
             <a href="https://mrwhoknows.com" target="_blank">
                 Made with <span class="heart">♥</span> by MrWhoKnows
             </a>
         </div>
-        <footer class="copyright">
-            <NAME> &copy; 2024
-                <br />
-                All Rights Reserved
-                <br />
-                <a href="https://mrwhoknows.com" target="_blank">Facebook</a>
-        </footer>
     </body>
 </html>
