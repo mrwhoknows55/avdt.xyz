@@ -41,6 +41,10 @@ header {
     margin-bottom: 3rem;
     padding-top: 2rem;
     animation: fadeIn 1.5s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
@@ -121,20 +125,45 @@ a:hover {
 
 .social-links {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration: none;
 }
 
 .social-links a {
-    padding: 0.5rem 1rem;
+    padding: 0.8rem;
     background-color: var(--nord2);
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .social-links a:hover {
     background-color: var(--nord3);
+    transform: translateY(-3px);
+    color: var(--nord6);
     text-decoration: none;
+}
+
+.social-links i {
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.social-links a:hover i {
+    color: var(--nord6);
+    text-decoration: none;
+}
+
+.white {
+    color: var(--nord6);
 }
 
 .project-link {
